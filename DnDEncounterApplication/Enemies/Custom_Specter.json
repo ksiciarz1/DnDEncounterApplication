@@ -1,0 +1,13 @@
+{
+  "Type": "Enemy",
+  "Name": "Custom Spectre",
+  "AC": 13,
+  "CR": 2,
+  "EXP": 450,
+  "ProfBonus": 2,
+  "AttackBonus": 6,
+  "SaveDC": 15,
+  "Attacks": {
+    "Grab": "grabs the creature and gives him disadventage on attack rolls and saving throws."
+  }
+}

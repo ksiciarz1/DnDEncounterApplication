@@ -1,0 +1,39 @@
+﻿<Window x:Class="DnDEncounterApplication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DnDEncounterApplication"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="719.9" Width="1080">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1
+*"/>
+            <ColumnDefinition Width="1
+                              *"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="11*"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="Dnd_Encounter_Calculator" Content="Dnd Encounter Calculator" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Click="Dnd_Encounter_Calculator_Click" Height="20" Width="139"/>
+        <Button x:Name="Dnd_Random_Encounter" Content="Dnd Random Encounter" Margin="10,35,0,0" Click="Dnd_Random_Encounter_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="139" Height="20"/>
+        <Viewbox x:Name="DataViewBox" Margin="0,24,0,0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <DataGrid x:Name="MyDataGrid" Margin="0,3,10,0" d:ItemsSource="{d:SampleData ItemCount=5}" ScrollViewer.CanContentScroll="True"/>
+        </Viewbox>
+        <TabControl x:Name="MyTabControl" Grid.Column="1" Grid.Row="1">
+            <TabItem Header="Character">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="TabItem">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+        <Button x:Name="Add_Creature" Content="Add Creature" HorizontalAlignment="Left" Margin="191,10,0,0" VerticalAlignment="Top" Width="115"/>
+        <Button x:Name="Add_Standart_Party" Content="Add Standard Party" HorizontalAlignment="Left" Margin="341,40,0,0" VerticalAlignment="Top" Width="136" Click="Add_Standart_Party_Click"/>
+        <Button x:Name="Create_New_Creature" Content="Create new Creature" HorizontalAlignment="Left" Margin="340,10,0,0" VerticalAlignment="Top" Width="137"/>
+        <Button x:Name="Remove_Creature" Content="Remove Creature" HorizontalAlignment="Left" Margin="192,40,0,0" VerticalAlignment="Top" Width="114" Click="Remove_Creature_Click"/>
+
+    </Grid>
+</Window>

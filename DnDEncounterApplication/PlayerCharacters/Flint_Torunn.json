@@ -1,0 +1,12 @@
+{
+  "Name": "Flint Torunn",
+  "LVL": 7,
+  "AC": 19,
+  "HP": 27,
+  "Spells": {
+    "Revivify": "https://www.dndbeyond.com/spells/revivify",
+    "Sacred Flame": "https://www.dndbeyond.com/spells/sacred-flame",
+    "Spiritual Weapon": "https://www.dndbeyond.com/spells/spiritual-weapon",
+    "Mass Healing Word": "https://www.dndbeyond.com/spells/mass-healing-word"
+  }
+}
