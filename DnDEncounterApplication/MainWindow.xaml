@@ -18,7 +18,7 @@
             <RowDefinition Height="11*"/>
         </Grid.RowDefinitions>
         <Button x:Name="Dnd_Encounter_Calculator" Content="Dnd Encounter Calculator" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Click="Dnd_Encounter_Calculator_Click" Height="20" Width="139"/>
-        <Button x:Name="Dnd_Random_Encounter" Content="Dnd Random Encounter" Margin="10,35,0,0" Click="Dnd_Random_Encounter_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="139" Height="20"/>
+        <Button x:Name="Dnd_Random_Encounter" Content="Dnd Random Encounter" Margin="10,40,0,0" Click="Dnd_Random_Encounter_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="139" Height="20"/>
         <Viewbox x:Name="DataViewBox" Margin="0,24,0,0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top">
             <DataGrid x:Name="MyDataGrid" Margin="0,3,10,0" d:ItemsSource="{d:SampleData ItemCount=5}" ScrollViewer.CanContentScroll="True"/>
         </Viewbox>
