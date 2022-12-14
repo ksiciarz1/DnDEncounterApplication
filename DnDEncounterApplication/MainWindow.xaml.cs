@@ -25,9 +25,10 @@ namespace DnDEncounterApplication
     /// </summary>
     public partial class MainWindow : Window
     {
-        private PlayerCharacter[] playerCharacters;
-        private Enemy[] enemies;
+        private List<PlayerCharacter> playerCharacters = new List<PlayerCharacter>();
+        private List<Enemy> enemies = new List<Enemy>();
         private ObservableCollection<CreatureViewContext> CreatureData = new ObservableCollection<CreatureViewContext>();
+
         private string[] standardParty = new string[] { "Flint_Torunn", "Dorn_GreyCastle", "Vathumal_Sheshen", "Rurik_Rumnaheim", "Ithil", "Snus_Of_The_Watchfull_Eye" };
 
         public MainWindow()
@@ -54,6 +55,7 @@ namespace DnDEncounterApplication
 
         private void SetUpTabForEnemy(Enemy enemy)
         {
+            // Enemy Info
             TabItem EnemyTabItem = new TabItem();
             EnemyTabItem.Header = "Enemy";
             TextBox characterTextBox = new TextBox();
@@ -62,7 +64,7 @@ namespace DnDEncounterApplication
             EnemyTabItem.Content = characterTextBox;
             MyTabControl.Items.Add(EnemyTabItem);
 
-
+            // Attacks Info
             TabItem AttackTabItem = new TabItem();
             AttackTabItem.Header = "Attacks";
             TextBox attackTextBox = new TextBox();
@@ -73,6 +75,7 @@ namespace DnDEncounterApplication
         }
         private void SetUpTabForPlayerCharacter(PlayerCharacter playerCharacter)
         {
+            // Character Info
             TabItem characterTabItem = new TabItem();
             characterTabItem.Header = "Character";
             TextBox characterTextBox = new TextBox();
@@ -81,6 +84,16 @@ namespace DnDEncounterApplication
             characterTabItem.Content = characterTextBox;
             MyTabControl.Items.Add(characterTabItem);
 
+            // Attack Info
+            TabItem attackTabItem = new TabItem();
+            attackTabItem.Header = "Attacks";
+            TextBox attackTextBox = new TextBox();
+            attackTextBox.Text = playerCharacter.WriteAttacks();
+            attackTextBox.IsReadOnly = true;
+            attackTabItem.Content = attackTextBox;
+            MyTabControl.Items.Add(attackTabItem);
+
+            // Spells Info
             TabItem spellsTabItem = new TabItem();
             spellsTabItem.Header = "Spells";
             TextBox spellsTextBox = new TextBox();
@@ -89,12 +102,24 @@ namespace DnDEncounterApplication
             spellsTabItem.Content = spellsTextBox;
             MyTabControl.Items.Add(spellsTabItem);
 
+            // Weapon Info
             TabItem weaponsTabItem = new TabItem();
             weaponsTabItem.Header = "Weapons";
             TextBox weaponTextBox = new TextBox();
             weaponTextBox.IsReadOnly = true;
             weaponTextBox.Text = playerCharacter.WriteWeaponsInfo();
             MyTabControl.Items.Add(weaponsTabItem);
+        }
+
+        public void AddEnemyToDataGrid(Enemy enemy)
+        {
+            enemies.Add(enemy);
+            CreatureData.Add(new CreatureViewContext(enemy));
+        }
+        public void AddPlayerCharacterToDataGrid(PlayerCharacter player)
+        {
+            playerCharacters.Add(player);
+            CreatureData.Add(new CreatureViewContext(player));
         }
 
         // Events
@@ -107,7 +132,7 @@ namespace DnDEncounterApplication
             {
                 if (view.PlayerCharacter != null)
                     SetUpTabForPlayerCharacter(view.PlayerCharacter);
-                else
+                else if (view.Enemy != null)
                     SetUpTabForEnemy(view.Enemy);
             }
         }
@@ -137,33 +162,32 @@ namespace DnDEncounterApplication
             }
             catch { }
         }
+        /// <summary>
+        /// Adds all player characters from standard party array
+        /// </summary>
         private void Add_Standart_Party_Click(object sender, RoutedEventArgs e)
         {
             string[] playerCharactersFiles = Directory.GetFiles(@"PlayerCharacters");
-            playerCharacters = new PlayerCharacter[playerCharactersFiles.Length];
 
             int contained = 0;
+            // Loop all files
             for (int i = 0; i < playerCharactersFiles.Length; i++)
             {
+                // If all standard party players were founds brake
                 if (contained == standardParty.Length)
                     break;
 
-                bool contains = false;
-
+                // Look for any party player
                 foreach (var standardPlayer in standardParty)
                 {
                     if (playerCharactersFiles[i].Contains(standardPlayer))
                     {
-                        contains = true;
+                        string playerFileContent = File.ReadAllText(playerCharactersFiles[i]);
+                        playerCharacters.Add(JsonSerializer.Deserialize<PlayerCharacter>(playerFileContent));
+                        CreatureData.Add(new CreatureViewContext(playerCharacters[i]));
                         contained++;
                         break;
                     }
-                }
-                if (contains)
-                {
-                    string playerFileContent = File.ReadAllText(playerCharactersFiles[i]);
-                    playerCharacters[i] = JsonSerializer.Deserialize<PlayerCharacter>(playerFileContent);
-                    CreatureData.Add(new CreatureViewContext(playerCharacters[i]));
                 }
             }
         }
