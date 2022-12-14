@@ -39,16 +39,5 @@ namespace DnDEncounterApplication
             SaveDC = enemy.SaveDC;
             SpellAttack = enemy.SpellAttack;
         }
-
-        public CreatureViewContext(string name, int hp, int ac, int attackBonus, int saveDC, int spellAttack, int iniciative)
-        {
-            Name = name;
-            HP = hp;
-            AC = ac;
-            AttackBonus = attackBonus;
-            SaveDC = saveDC;
-            SpellAttack = spellAttack;
-            Iniciative = iniciative;
-        }
     }
 }

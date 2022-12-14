@@ -20,19 +20,6 @@ namespace DnDEncounterApplication
         public int SaveDC { set; get; }
         public Dictionary<string, string> Attacks { set; get; }
 
-        public Enemy(string name, int hp, int ac, int cr, int exp, int proficencyBonus, int attackBonus, int spellAttack, int saveDC, Dictionary<string, string> attacks)
-        {
-            Name = name;
-            HP = hp;
-            AC = ac;
-            CR = cr;
-            EXP = exp;
-            ProficencyBonus = proficencyBonus;
-            AttackBonus = attackBonus;
-            SpellAttack = spellAttack;
-            SaveDC = saveDC;
-            Attacks = attacks;
-        }
 
         internal string WriteInfo()
         {
