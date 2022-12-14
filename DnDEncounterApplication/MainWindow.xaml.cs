@@ -172,5 +172,9 @@ namespace DnDEncounterApplication
             if (MyDataGrid.SelectedItem != null)
                 CreatureData.Remove((CreatureViewContext)MyDataGrid.SelectedItem);
         }
+        private void Create_New_Creature_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }
