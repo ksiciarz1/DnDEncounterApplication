@@ -167,7 +167,7 @@ namespace DnDEncounterApplication
         /// </summary>
         private void Add_Standart_Party_Click(object sender, RoutedEventArgs e)
         {
-            string[] playerCharactersFiles = Directory.GetFiles(@"PlayerCharacters");
+            string[] playerCharactersFiles = FileManager.GetAllPlayerCharacterPaths();
 
             int contained = 0;
             // Loop all files
@@ -182,8 +182,7 @@ namespace DnDEncounterApplication
                 {
                     if (playerCharactersFiles[i].Contains(standardPlayer))
                     {
-                        string playerFileContent = File.ReadAllText(playerCharactersFiles[i]);
-                        playerCharacters.Add(JsonSerializer.Deserialize<PlayerCharacter>(playerFileContent));
+                        playerCharacters.Add(FileManager.ReadPlayer(playerCharactersFiles[i]));
                         CreatureData.Add(new CreatureViewContext(playerCharacters[i]));
                         contained++;
                         break;
