@@ -21,6 +21,21 @@ namespace DnDEncounterApplication
         public Dictionary<string, string> Spells { set; get; }
         public List<Weapon> Weapons { set; get; }
 
+        public PlayerCharacter(string name, int hp, int lvl, int ac, int proficencyBonus, int attackBonus, int saveDC, int spellAttack, Dictionary<string, string> attacks, Dictionary<string, string> spells, List<Weapon> weapons)
+        {
+            Name = name;
+            HP = hp;
+            LVL = lvl;
+            AC = ac;
+            ProficencyBonus = proficencyBonus;
+            AttackBonus = attackBonus;
+            SaveDC = saveDC;
+            SpellAttack = spellAttack;
+            Attacks = attacks;
+            Spells = spells;
+            Weapons = weapons;
+        }
+
         internal string WriteInfo()
         {
             StringBuilder stringBuilder = new StringBuilder();
