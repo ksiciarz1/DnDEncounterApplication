@@ -30,6 +30,8 @@ namespace DnDEncounterApplication
         private ObservableCollection<CreatureViewContext> CreatureData = new ObservableCollection<CreatureViewContext>();
         private string[] standardParty = new string[] { "Flint_Torunn", "Dorn_GreyCastle", "Vathumal_Sheshen", "Rurik_Rumnaheim", "Ithil", "Snus_Of_The_Watchfull_Eye" };
 
+        private AddingFormWindow formWindow;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -174,7 +176,17 @@ namespace DnDEncounterApplication
         }
         private void Create_New_Creature_Click(object sender, RoutedEventArgs e)
         {
-            
+
+        }
+
+        private void Add_Creature_Click(object sender, RoutedEventArgs e)
+        {
+            if (formWindow == null)
+            {
+                formWindow = new AddingFormWindow();
+                formWindow.Closed += (s, e) => { formWindow = null; };
+            }
+            formWindow.ShowDialog();
         }
     }
 }

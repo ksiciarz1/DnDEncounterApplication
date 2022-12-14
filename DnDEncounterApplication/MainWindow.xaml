@@ -30,7 +30,7 @@
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
         </TabControl>
-        <Button x:Name="Add_Creature" Content="Add Creature" HorizontalAlignment="Left" Margin="191,10,0,0" VerticalAlignment="Top" Width="115"/>
+        <Button x:Name="Add_Creature" Content="Add Creature" HorizontalAlignment="Left" Margin="191,10,0,0" VerticalAlignment="Top" Width="115" Click="Add_Creature_Click"/>
         <Button x:Name="Add_Standart_Party" Content="Add Standard Party" HorizontalAlignment="Left" Margin="341,40,0,0" VerticalAlignment="Top" Width="136" Click="Add_Standart_Party_Click"/>
         <Button x:Name="Create_New_Creature" Content="Create new Creature" HorizontalAlignment="Left" Margin="340,10,0,0" VerticalAlignment="Top" Width="137"/>
         <Button x:Name="Remove_Creature" Content="Remove Creature" HorizontalAlignment="Left" Margin="192,40,0,0" VerticalAlignment="Top" Width="114" Click="Remove_Creature_Click"/>
