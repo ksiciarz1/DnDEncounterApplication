@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Packaging;
@@ -194,6 +196,53 @@ namespace DnDEncounterApplication
         {
             if (MyDataGrid.SelectedItem != null)
                 CreatureData.Remove((CreatureViewContext)MyDataGrid.SelectedItem);
+        }
+        /// <summary>
+        /// Moves items in datagrid up and down based on sender
+        /// </summary>
+        private void Direction_Button_Click(object sender, RoutedEventArgs e)
+        {
+            int selectedIndex = MyDataGrid.SelectedIndex;
+            // Clears Sort in data grid
+            ICollectionView view = CollectionViewSource.GetDefaultView(CreatureData);
+            if (view.SortDescriptions.Any(description =>
+            {
+                return description != null;
+            }))
+            {
+                view.SortDescriptions.Clear();
+
+                // Moves creature in Creature Data collection in its place in Data grid
+                for (int i = 0; i < MyDataGrid.Items.Count; i++)
+                    for (int j = 0; j < CreatureData.Count; j++)
+                    {
+                        if (CreatureData[j] == MyDataGrid.Items[i])
+                        {
+                            CreatureData.Move(j, i);
+                            break;
+                        }
+                    }
+
+                // Clears sorting arrow in columns headers
+                foreach (var column in MyDataGrid.Columns)
+                    column.SortDirection = null;
+
+                MyDataGrid.SelectedIndex = selectedIndex;
+            }
+
+            if (sender == UpButton)
+            {
+                if (MyDataGrid.SelectedIndex != 0)
+                    CreatureData.Move(MyDataGrid.SelectedIndex, MyDataGrid.SelectedIndex - 1);
+
+            }
+            else if (sender == DownButton)
+            {
+                if (MyDataGrid.SelectedIndex != MyDataGrid.Items.Count - 1)
+                    CreatureData.Move(MyDataGrid.SelectedIndex, MyDataGrid.SelectedIndex + 1);
+
+            }
+            MyDataGrid.Items.Refresh();
         }
     }
 }

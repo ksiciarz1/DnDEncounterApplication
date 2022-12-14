@@ -11,8 +11,8 @@ namespace DnDEncounterApplication
 {
     internal static class FileManager
     {
-        public const string playerDirectory = @"PlayerCharacters";
-        public const string enemyDirectory = @"Enemies";
+        public const string playerDirectory = @"./PlayerCharacters";
+        public const string enemyDirectory = @"./Enemies";
 
         public static PlayerCharacter[] ReadAllPlayerCharacters()
         {
@@ -41,7 +41,7 @@ namespace DnDEncounterApplication
 
         public static PlayerCharacter ReadPlayer(string file)
         {
-            PlayerCharacter player = JsonSerializer.Deserialize<PlayerCharacter>(file);
+            PlayerCharacter player = JsonSerializer.Deserialize<PlayerCharacter>(File.ReadAllText(file));
             if (player != null)
                 return player;
             throw new Exception();
@@ -49,7 +49,7 @@ namespace DnDEncounterApplication
         }
         public static Enemy ReadEnemy(string file)
         {
-            Enemy enemy = JsonSerializer.Deserialize<Enemy>(file);
+            Enemy enemy = JsonSerializer.Deserialize<Enemy>(File.ReadAllText(file));
             if (enemy != null)
                 return enemy;
             throw new Exception();
