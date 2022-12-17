@@ -19,52 +19,53 @@
             <RowDefinition Height="47*"/>
 
         </Grid.RowDefinitions>
-        <Grid HorizontalAlignment="Left" Height="60" Margin="7,0,0,0" VerticalAlignment="Center" Width="783" Grid.ColumnSpan="2">
+        <Grid HorizontalAlignment="Left" Height="60" Margin="10,10,0,10" VerticalAlignment="Center" Width="783" Grid.ColumnSpan="2">
             <TextBlock HorizontalAlignment="Left" Height="35" TextWrapping="Wrap" VerticalAlignment="Top" Width="373" FontSize="25"><Run Text="Add a "/><Run Language="pl-pl" Text="creature"/></TextBlock>
             <RadioButton Content="Enemy" HorizontalAlignment="Left" Margin="0,45,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked" IsChecked="True"/>
             <RadioButton Content="Player" HorizontalAlignment="Left" Margin="102,45,0,0" VerticalAlignment="Top"/>
-            <Button Content="Add attack" HorizontalAlignment="Left" Margin="405,40,0,0" VerticalAlignment="Top" Width="80"/>
-            <Button Content="Add spell" HorizontalAlignment="Left" Margin="490,40,0,0" VerticalAlignment="Top" Width="80"/>
+            <Button Content="Add attack" HorizontalAlignment="Left" Margin="390,40,0,0" VerticalAlignment="Top" Width="80"/>
+            <Button Content="Add spell" HorizontalAlignment="Left" Margin="475,40,0,0" VerticalAlignment="Top" Width="80"/>
 
-            <Button Content="Add weapon" HorizontalAlignment="Left" Margin="575,40,0,0" VerticalAlignment="Top" Width="80"/>
+            <Button Content="Add weapon" HorizontalAlignment="Left" Margin="560,40,0,0" VerticalAlignment="Top" Width="80"/>
         </Grid>
-        <Grid HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="187" Margin="7,15,0,0">
-            <Label Content="Name" Height="32" Width="107" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-            <TextBox Margin="112,0,-134,0" TextWrapping="Wrap" Text="" Height="32" VerticalAlignment="Center" TextChanged="TextBox_TextChanged_1" FontSize="22"/>
+        <Grid HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="390">
+            <Label Content="Name" Height="32" Width="106" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBox Margin="111,0,1,0" TextWrapping="Wrap" Text="" Height="32" VerticalAlignment="Center" TextChanged="TextBox_TextChanged_1" FontSize="22"/>
         </Grid>
-        <Grid HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="187" Margin="7,52,0,0">
-            <Label Content="HP" Width="107" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-            <TextBox Margin="112,0,-134,0" TextWrapping="Wrap" Text="" Height="32" VerticalAlignment="Center" TextChanged="TextBox_TextChanged_1" FontSize="22"/>
+        <Grid HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="390" Margin="0,37,0,0">
+            <Label Content="HP" Width="106" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBox TextWrapping="Wrap" Text="" Height="32" VerticalAlignment="Center" TextChanged="TextBox_TextChanged_1" FontSize="22" HorizontalAlignment="Left" Width="50" Margin="111,0,0,0"/>
         </Grid>
-        <Grid HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="187" Margin="7,89,0,0">
+        <Grid HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="390" Margin="0,74,0,0">
             <Label Content="LVL" Height="32" Width="106" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-            <TextBox Margin="111,0,-134,0" TextWrapping="Wrap" Text="" Height="32" VerticalAlignment="Center" TextChanged="TextBox_TextChanged_1" FontSize="22"/>
+            <TextBox Margin="111,0,229,0" TextWrapping="Wrap" Text="" Height="32" VerticalAlignment="Center" TextChanged="TextBox_TextChanged_1" FontSize="22"/>
         </Grid>
-        <Grid HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="187" Margin="7,126,0,0">
+        <Grid HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="390" Margin="0,111,0,0">
             <Label Content="AC" Height="32" Width="106" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-            <TextBox Margin="111,0,-134,0" TextWrapping="Wrap" Text="" Height="32" VerticalAlignment="Center" TextChanged="TextBox_TextChanged_1" FontSize="22"/>
+            <TextBox Margin="111,0,229,0" TextWrapping="Wrap" Text="" Height="32" VerticalAlignment="Center" TextChanged="TextBox_TextChanged_1" FontSize="22"/>
         </Grid>
-        <Grid HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="187" Margin="7,163,0,0">
-            <Label Content="ProficencyBonus" Height="32" Width="107" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-            <TextBox Margin="112,0,-134,0" TextWrapping="Wrap" Text="" Height="32" VerticalAlignment="Center" TextChanged="TextBox_TextChanged_1" FontSize="22"/>
+        <Grid HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="390" Margin="0,148,0,0">
+            <Label Content="ProficencyBonus" Height="32" Width="106" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBox Margin="111,0,229,0" TextWrapping="Wrap" Text="" Height="32" VerticalAlignment="Center" TextChanged="TextBox_TextChanged_1" FontSize="22"/>
         </Grid>
-        <Grid HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="187" Margin="7,200,0,0">
+        <Grid HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="390" Margin="0,185,0,0">
             <Label Content="AttackBonus" Height="32" Width="106" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-            <TextBox Margin="111,0,-134,0" TextWrapping="Wrap" Text="" Height="32" VerticalAlignment="Center" TextChanged="TextBox_TextChanged_1" FontSize="22"/>
+            <TextBox Margin="111,0,229,0" TextWrapping="Wrap" Text="" Height="32" VerticalAlignment="Center" TextChanged="TextBox_TextChanged_1" FontSize="22"/>
         </Grid>
-        <Grid HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="187" Margin="7,237,0,0">
+        <Grid HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="390" Margin="0,222,0,0">
             <Label Content="SaveDC" Height="32" Width="106" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-            <TextBox Margin="111,0,-134,0" TextWrapping="Wrap" Text="" Height="32" VerticalAlignment="Center" TextChanged="TextBox_TextChanged_1" FontSize="22"/>
+            <TextBox Margin="111,0,229,0" TextWrapping="Wrap" Text="" Height="32" VerticalAlignment="Center" TextChanged="TextBox_TextChanged_1" FontSize="22"/>
         </Grid>
-        <Grid HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="187" Margin="7,274,0,0">
+        <Grid HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="390" Margin="0,259,0,0">
             <Label Content="SpellAttack" Height="32" Width="106" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-            <TextBox Margin="111,0,-134,0" TextWrapping="Wrap" Text="" Height="32" VerticalAlignment="Center" TextChanged="TextBox_TextChanged_1" FontSize="22"/>
+            <TextBox Margin="111,0,229,0" TextWrapping="Wrap" Text="" Height="32" VerticalAlignment="Center" TextChanged="TextBox_TextChanged_1" FontSize="22"/>
         </Grid>
-        <Grid HorizontalAlignment="Left" Height="20" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="101">
-            <Button Content="Apply" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <Button Content="Cancel" HorizontalAlignment="Left" Margin="62,0,0,0" VerticalAlignment="Center"/>
+        <Grid HorizontalAlignment="Left" Height="20" Margin="10,10,0,10" Grid.Row="2" VerticalAlignment="Center" Width="780" Grid.ColumnSpan="2">
+            <Button Content="Apply" HorizontalAlignment="Left" VerticalAlignment="Center" Width="50"/>
+            <Button Content="Cancel" HorizontalAlignment="Left" Margin="62,0,0,0" VerticalAlignment="Center" Width="50"/>
+            <CheckBox Content="Save to file" HorizontalAlignment="Left" Margin="389,0,0,0" VerticalAlignment="Center"/>
         </Grid>
-        <TreeView Grid.Column="1" Grid.Row="1">
+        <TreeView Grid.Column="1" Grid.Row="1" Margin="0,0,10,0">
             <TreeViewItem Header="Attacks">
                 <TreeViewItem Header="Test"></TreeViewItem>
                 <TreeViewItem Header="Test"></TreeViewItem>

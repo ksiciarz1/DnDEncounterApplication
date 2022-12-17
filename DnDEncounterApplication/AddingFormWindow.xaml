@@ -5,9 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DnDEncounterApplication"
         mc:Ignorable="d"
-        Title="AddingFormWindow">
+        Title="AddingFormWindow" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
     <Grid>
-        <Frame x:Name="MyFrame" Content="Frame"/>
-
+        <Frame x:Name="MyFrame" Source="/AddingForm.xaml"/>
     </Grid>
 </Window>

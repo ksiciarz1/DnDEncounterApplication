@@ -22,8 +22,6 @@ namespace DnDEncounterApplication
         public AddingFormWindow()
         {
             InitializeComponent();
-            AddingForm form = new AddingForm();
-            MyFrame.Navigate(form);
         }
     }
 }
