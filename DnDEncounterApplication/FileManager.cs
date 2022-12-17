@@ -14,6 +14,8 @@ namespace DnDEncounterApplication
         public const string playerDirectory = @"./PlayerCharacters";
         public const string enemyDirectory = @"./Enemies";
 
+        public static bool FileExists(string filePath) => File.Exists(filePath);
+
         public static PlayerCharacter[] ReadAllPlayerCharacters()
         {
             string[] playerCharactersFiles = Directory.GetFiles(playerDirectory);
@@ -68,13 +70,14 @@ namespace DnDEncounterApplication
         /// <summary>
         /// Add a new file with player character
         /// </summary>
+        /// <param name="force">If true and file exist, it will be overritten</param>
         /// <returns>Return false if file already exists, true otherwise</returns>
-        public static bool AddNewPlayerCharacter(PlayerCharacter character)
+        public static bool AddNewPlayerCharacter(PlayerCharacter character, bool force = false)
         {
             string filename = character.Name.Trim().Replace(" ", "_");
             string characterJson = JsonSerializer.Serialize(character, new JsonSerializerOptions() { WriteIndented = true });
 
-            if (File.Exists(playerDirectory + filename))
+            if (File.Exists(playerDirectory + filename) && force == false)
                 return false;
 
             File.WriteAllText(playerDirectory + filename, characterJson);
@@ -84,13 +87,14 @@ namespace DnDEncounterApplication
         /// <summary>
         /// Add a new file with enemy
         /// </summary>
+        /// <param name="force">If true and file exist, it will be overritten</param>
         /// <returns>Return false if file already exists, true otherwise</returns>
-        public static bool AddNewEnemy(Enemy enemy)
+        public static bool AddNewEnemy(Enemy enemy, bool force = false)
         {
             string filename = enemy.Name.Trim().Replace(" ", "_");
             string characterJson = JsonSerializer.Serialize(enemy, new JsonSerializerOptions() { WriteIndented = true });
 
-            if (File.Exists(enemyDirectory + filename))
+            if (File.Exists(enemyDirectory + filename) && force == false)
                 return false;
 
             File.WriteAllText(enemyDirectory + filename, characterJson);

@@ -1,0 +1,22 @@
+{
+  "Name": "Rurik Rumnaheim",
+  "LVL": 7,
+  "AC": 19,
+  "HP": 60,
+  "Spells": {},
+  "Weapons": [
+    {
+      "Name": "Great Warhammer of Fire Throwing",
+      "DMG": "1d12 + 1 Blug",
+      "Magical": true,
+      "Modifiers": {
+        "Rarity": "Uncommon",
+        "WeaponType": "Martial",
+        "Attunment": "Requierd"
+      }
+    }
+  ],
+  "Attacks": {
+    "Rage": "Rage 3 uses per long rest."
+  }
+}

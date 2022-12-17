@@ -17,7 +17,13 @@
     <None Update="Enemies\Custom_Specter.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Enemies\Young_White_Dragon.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="PlayerCharacters\Flint_Torunn.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="PlayerCharacters\Rurik_Rumnaheim.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
