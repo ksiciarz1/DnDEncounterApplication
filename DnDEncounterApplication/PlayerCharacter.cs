@@ -15,8 +15,8 @@ namespace DnDEncounterApplication
         public int AC { set; get; }
         public int ProficencyBonus { set; get; }
         public int AttackBonus { set; get; }
-        public int SaveDC { set; get; }
         public int SpellAttack { set; get; }
+        public int SaveDC { set; get; }
         public Dictionary<string, string> Attacks { set; get; }
         public Dictionary<string, string> Spells { set; get; }
         public List<Weapon> Weapons { set; get; }

@@ -6,6 +6,8 @@ using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace DnDEncounterApplication
 {
@@ -43,7 +45,7 @@ namespace DnDEncounterApplication
 
         public static PlayerCharacter ReadPlayer(string file)
         {
-            PlayerCharacter player = JsonSerializer.Deserialize<PlayerCharacter>(File.ReadAllText(file));
+            PlayerCharacter? player = JsonSerializer.Deserialize<PlayerCharacter>(File.ReadAllText(file));
             if (player != null)
                 return player;
             throw new Exception();
@@ -51,10 +53,20 @@ namespace DnDEncounterApplication
         }
         public static Enemy ReadEnemy(string file)
         {
-            Enemy enemy = JsonSerializer.Deserialize<Enemy>(File.ReadAllText(file));
+            Enemy? enemy = JsonSerializer.Deserialize<Enemy>(File.ReadAllText(file));
             if (enemy != null)
                 return enemy;
             throw new Exception();
+        }
+
+        public static ImageSource? GetImageSource(string file)
+        {
+            if (File.Exists(file))
+            {
+                ImageSource source = new BitmapImage(new Uri(Path.GetFullPath(file)));
+                return source;
+            }
+            return null;
         }
 
         public static string[] GetAllPlayerCharacterPaths()

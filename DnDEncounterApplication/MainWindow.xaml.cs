@@ -124,6 +124,21 @@ namespace DnDEncounterApplication
             CreatureData.Add(new CreatureViewContext(player));
         }
 
+        public void SetImage(string file)
+        {
+            file = "Images/" + file;
+            ImageSource? imageSource = FileManager.GetImageSource(file);
+            if (imageSource != null)
+            {
+                SelectedImage.Source = imageSource;
+                SelectedImage.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                SelectedImage.Visibility = Visibility.Hidden;
+            }
+        }
+
         // Events
         private void DataGrid_SelectedCellsChanged(object sender, EventArgs e)
         {
@@ -164,10 +179,23 @@ namespace DnDEncounterApplication
             }
             catch { }
         }
+        private void Dnd_Encounter_Builder_Click(object sender, RoutedEventArgs e)
+        {
+            // Opens a website in default browser
+            try
+            {
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                {
+                    FileName = "https://www.aidedd.org/dnd-encounter/index.php?l=1",
+                    UseShellExecute = true
+                });
+            }
+            catch { }
+        }
         /// <summary>
         /// Adds all player characters from standard party array
         /// </summary>
-        private void Add_Standart_Party_Click(object sender, RoutedEventArgs e)
+        private void Add_Standard_Party_Click(object sender, RoutedEventArgs e)
         {
             string[] playerCharactersFiles = FileManager.GetAllPlayerCharacterPaths();
 
@@ -186,6 +214,7 @@ namespace DnDEncounterApplication
                     {
                         playerCharacters.Add(FileManager.ReadPlayer(playerCharactersFiles[i]));
                         CreatureData.Add(new CreatureViewContext(playerCharacters[i]));
+                        SetImage(playerCharacters);
                         contained++;
                         break;
                     }
@@ -195,7 +224,17 @@ namespace DnDEncounterApplication
         private void Remove_Creature_Click(object sender, RoutedEventArgs e)
         {
             if (MyDataGrid.SelectedItem != null)
+            {
+                Enemy enemy = MyDataGrid.SelectedItem as Enemy;
+                if (enemy != null)
+                    enemies.Remove(enemy);
+
+                PlayerCharacter playerCharacter = MyDataGrid.SelectedItem as PlayerCharacter;
+                if (playerCharacter != null)
+                    playerCharacters.Remove(playerCharacter);
+
                 CreatureData.Remove((CreatureViewContext)MyDataGrid.SelectedItem);
+            }
         }
         /// <summary>
         /// Moves items in datagrid up and down based on sender
@@ -244,5 +283,6 @@ namespace DnDEncounterApplication
             }
             MyDataGrid.Items.Refresh();
         }
+
     }
 }
