@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace DnDEncounterApplication
 {
@@ -12,27 +13,44 @@ namespace DnDEncounterApplication
             InitializeComponent();
         }
 
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void EnemyRadio_Checked(object sender, System.Windows.RoutedEventArgs e)
+        {
+            LVL.Visibility = System.Windows.Visibility.Collapsed;
+
+            SpellAttack.Visibility = System.Windows.Visibility.Collapsed;
+            AddSpellButton.Visibility = System.Windows.Visibility.Collapsed;
+            AddWeaponButton.Visibility = System.Windows.Visibility.Collapsed;
+            SpellsTreeView.Visibility = System.Windows.Visibility.Collapsed;
+            WeaponsTreeView.Visibility = System.Windows.Visibility.Collapsed;
+        }
+
+        private void PlayerRadio_Checked(object sender, System.Windows.RoutedEventArgs e)
+        {
+            LVL.Visibility = System.Windows.Visibility.Visible;
+
+            SpellAttack.Visibility = System.Windows.Visibility.Visible;
+            AddSpellButton.Visibility = System.Windows.Visibility.Visible;
+            AddWeaponButton.Visibility = System.Windows.Visibility.Visible;
+            SpellsTreeView.Visibility = System.Windows.Visibility.Visible;
+            WeaponsTreeView.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void ApplyButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
 
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void CancelButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            var parentWindow = this.Parent as Window;
 
+            if (parentWindow != null)
+            {
+                parentWindow.Close();
+            }
         }
 
-        private void TextBox_TextChanged_1()
-        {
-
-        }
-
-        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void RadioButton_Checked(object sender, System.Windows.RoutedEventArgs e)
+        private void SaveToFile_Checked(object sender, RoutedEventArgs e)
         {
 
         }
