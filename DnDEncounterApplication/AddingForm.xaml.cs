@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Numerics;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -16,25 +17,26 @@ namespace DnDEncounterApplication
 
         private void EnemyRadio_Checked(object sender, System.Windows.RoutedEventArgs e)
         {
-            LVL.Visibility = System.Windows.Visibility.Collapsed;
-
-            SpellAttack.Visibility = System.Windows.Visibility.Collapsed;
-            AddSpellButton.Visibility = System.Windows.Visibility.Collapsed;
-            AddWeaponButton.Visibility = System.Windows.Visibility.Collapsed;
-            SpellsTreeView.Visibility = System.Windows.Visibility.Collapsed;
-            WeaponsTreeView.Visibility = System.Windows.Visibility.Collapsed;
+            LVL.Visibility = Visibility.Collapsed;
+            CR.Visibility = Visibility.Visible;
+            EXP.Visibility = Visibility.Visible;
+            SpellAttack.Visibility = Visibility.Collapsed;
+            AddSpellButton.Visibility = Visibility.Collapsed;
+            AddWeaponButton.Visibility = Visibility.Collapsed;
+            SpellsTreeView.Visibility = Visibility.Collapsed;
+            WeaponsTreeView.Visibility = Visibility.Collapsed;
         }
         private void PlayerRadio_Checked(object sender, System.Windows.RoutedEventArgs e)
         {
-            LVL.Visibility = System.Windows.Visibility.Visible;
-
-            SpellAttack.Visibility = System.Windows.Visibility.Visible;
-            AddSpellButton.Visibility = System.Windows.Visibility.Visible;
-            AddWeaponButton.Visibility = System.Windows.Visibility.Visible;
-            SpellsTreeView.Visibility = System.Windows.Visibility.Visible;
-            WeaponsTreeView.Visibility = System.Windows.Visibility.Visible;
+            LVL.Visibility = Visibility.Visible;
+            CR.Visibility = Visibility.Collapsed;
+            EXP.Visibility = Visibility.Collapsed;
+            SpellAttack.Visibility = Visibility.Visible;
+            AddSpellButton.Visibility = Visibility.Visible;
+            AddWeaponButton.Visibility = Visibility.Visible;
+            SpellsTreeView.Visibility = Visibility.Visible;
+            WeaponsTreeView.Visibility = Visibility.Visible;
         }
-
 
         private void AddPlayer()
         {
@@ -47,18 +49,33 @@ namespace DnDEncounterApplication
                 AC = Convert.ToInt32(ACTextBox.Text),
                 ProficencyBonus = Convert.ToInt32(ProficencyBonusTextBox.Text),
                 AttackBonus = Convert.ToInt32(AttackBonusTextBox.Text),
+                SpellAttack = Convert.ToInt32(SpellAttackTextBox.Text),
+                SaveDC = Convert.ToInt32(SaveDCTextBox.Text)
+            };
+            AddingFormWindow parentWindow = Window.GetWindow(this) as AddingFormWindow;
+            if (parentWindow != null) parentWindow.parentWindow.AddPlayerCharacterToDataGrid(player);
+            ClearFields();
+            CloseWindow();
+        }
+        private void AddEnemy()
+        {
+            //throw new NotImplementedException();
+            Enemy enemy = new Enemy()
+            {
+                Name = NameTextBox.Text,
+                HP = Convert.ToInt32(HPTextBox.Text),
+                AC = Convert.ToInt32(LVLTextBox.Text),
+                CR = Convert.ToInt32(ACTextBox.Text),
+                EXP = Convert.ToInt32(ACTextBox.Text),
+                ProficencyBonus = Convert.ToInt32(ProficencyBonusTextBox.Text),
+                AttackBonus = Convert.ToInt32(AttackBonusTextBox.Text),
                 SaveDC = Convert.ToInt32(SaveDCTextBox.Text),
                 SpellAttack = Convert.ToInt32(SpellAttackTextBox.Text)
             };
             AddingFormWindow parentWindow = Window.GetWindow(this) as AddingFormWindow;
-            if (parentWindow != null)
-                parentWindow.parentWindow.AddPlayerCharacterToDataGrid(player);
-
+            if (parentWindow != null) parentWindow.parentWindow.AddEnemyToDataGrid(enemy);
             ClearFields();
-        }
-        private void AddEnemy()
-        {
-            throw new NotImplementedException();
+            CloseWindow();
         }
         private void ClearFields()
         {
@@ -75,16 +92,17 @@ namespace DnDEncounterApplication
 
         private void ApplyButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            if ((bool)SaveToFile.IsChecked)
+            {
+
+            }
             if ((bool)PlayerRadio.IsChecked)
                 AddPlayer();
             if ((bool)EnemyRadio.IsChecked)
                 AddEnemy();
         }
-        private void CancelButton_Click(object sender, System.Windows.RoutedEventArgs e) => Window.GetWindow(this).Close();
+        private void CancelButton_Click(object sender, System.Windows.RoutedEventArgs e) => CloseWindow();
 
-        private void SaveToFile_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
+        private void CloseWindow() => Window.GetWindow(this).Close();
     }
 }

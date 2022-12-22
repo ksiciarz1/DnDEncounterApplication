@@ -59,6 +59,15 @@ namespace DnDEncounterApplication
             throw new Exception();
         }
 
+        public static void SavePlayerCharacter(PlayerCharacter player)
+        {
+
+        }
+        public static void SaveEnemy(Enemy enemy)
+        {
+
+        }
+
         public static ImageSource? GetImageSource(string file)
         {
             if (File.Exists(file))
