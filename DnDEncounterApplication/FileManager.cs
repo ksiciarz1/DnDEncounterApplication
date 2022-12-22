@@ -59,15 +59,6 @@ namespace DnDEncounterApplication
             throw new Exception();
         }
 
-        public static void SavePlayerCharacter(PlayerCharacter player)
-        {
-
-        }
-        public static void SaveEnemy(Enemy enemy)
-        {
-
-        }
-
         public static ImageSource? GetImageSource(string file)
         {
             if (File.Exists(file))
@@ -93,7 +84,7 @@ namespace DnDEncounterApplication
         /// </summary>
         /// <param name="force">If true and file exist, it will be overritten</param>
         /// <returns>Return false if file already exists, true otherwise</returns>
-        public static bool AddNewPlayerCharacter(PlayerCharacter character, bool force = false)
+        public static bool SavePlayerCharacter(PlayerCharacter character, bool force = false)
         {
             string filename = character.Name.Trim().Replace(" ", "_");
             string characterJson = JsonSerializer.Serialize(character, new JsonSerializerOptions() { WriteIndented = true });
@@ -110,7 +101,7 @@ namespace DnDEncounterApplication
         /// </summary>
         /// <param name="force">If true and file exist, it will be overritten</param>
         /// <returns>Return false if file already exists, true otherwise</returns>
-        public static bool AddNewEnemy(Enemy enemy, bool force = false)
+        public static bool SaveEnemy(Enemy enemy, bool force = false)
         {
             string filename = enemy.Name.Trim().Replace(" ", "_");
             string characterJson = JsonSerializer.Serialize(enemy, new JsonSerializerOptions() { WriteIndented = true });

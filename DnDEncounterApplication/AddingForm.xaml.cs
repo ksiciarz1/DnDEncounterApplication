@@ -64,13 +64,12 @@ namespace DnDEncounterApplication
             {
                 Name = NameTextBox.Text,
                 HP = Convert.ToInt32(HPTextBox.Text),
-                AC = Convert.ToInt32(LVLTextBox.Text),
-                CR = Convert.ToInt32(ACTextBox.Text),
-                EXP = Convert.ToInt32(ACTextBox.Text),
+                AC = Convert.ToInt32(ACTextBox.Text),
+                CR = Convert.ToInt32(CRTextBox.Text),
+                EXP = Convert.ToInt32(EXPTextBox.Text),
                 ProficencyBonus = Convert.ToInt32(ProficencyBonusTextBox.Text),
                 AttackBonus = Convert.ToInt32(AttackBonusTextBox.Text),
-                SaveDC = Convert.ToInt32(SaveDCTextBox.Text),
-                SpellAttack = Convert.ToInt32(SpellAttackTextBox.Text)
+                SaveDC = Convert.ToInt32(SaveDCTextBox.Text)
             };
             AddingFormWindow parentWindow = Window.GetWindow(this) as AddingFormWindow;
             if (parentWindow != null) parentWindow.parentWindow.AddEnemyToDataGrid(enemy);
