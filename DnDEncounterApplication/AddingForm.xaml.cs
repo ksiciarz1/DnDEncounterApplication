@@ -13,6 +13,7 @@ namespace DnDEncounterApplication
         public AddingForm()
         {
             InitializeComponent();
+            PlayerRadio.IsChecked = true;
         }
 
         private void EnemyRadio_Checked(object sender, System.Windows.RoutedEventArgs e)
@@ -38,7 +39,7 @@ namespace DnDEncounterApplication
             WeaponsTreeView.Visibility = Visibility.Visible;
         }
 
-        private void AddPlayer()
+        private void AddPlayer(bool saveToFile)
         {
             // TODO: Validation
             PlayerCharacter player = new PlayerCharacter()
@@ -55,9 +56,21 @@ namespace DnDEncounterApplication
             AddingFormWindow parentWindow = Window.GetWindow(this) as AddingFormWindow;
             if (parentWindow != null) parentWindow.parentWindow.AddPlayerCharacterToDataGrid(player);
             ClearFields();
-            CloseWindow();
+            if (saveToFile)
+            {
+                string name = GetPath(player.Name);
+                if (FileManager.FileExists(name))
+                {
+                    // TODO: Opens a window to replace file
+                    //FileManager.AddNewPlayerCharacter(player, true);
+                }
+                else
+                {
+                    FileManager.AddNewPlayerCharacter(player);
+                }
+            }
         }
-        private void AddEnemy()
+        private void AddEnemy(bool saveToFile)
         {
             //throw new NotImplementedException();
             Enemy enemy = new Enemy()
@@ -74,7 +87,19 @@ namespace DnDEncounterApplication
             AddingFormWindow parentWindow = Window.GetWindow(this) as AddingFormWindow;
             if (parentWindow != null) parentWindow.parentWindow.AddEnemyToDataGrid(enemy);
             ClearFields();
-            CloseWindow();
+            if (saveToFile)
+            {
+                string name = GetPath(enemy.Name);
+                if (FileManager.FileExists(name))
+                {
+                    // TODO: Opens a window to replace file
+                    //FileManager.AddNewEnemy(enemy, true);
+                }
+                else
+                {
+                    FileManager.AddNewEnemy(enemy);
+                }
+            }
         }
         private void ClearFields()
         {
@@ -87,18 +112,19 @@ namespace DnDEncounterApplication
             SaveDCTextBox.Text = "";
             SpellAttackTextBox.Text = "";
         }
+        private string GetPath(string name)
+        {
+            return name.Trim().Replace(" ", "_");
+        }
 
 
         private void ApplyButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if ((bool)SaveToFile.IsChecked)
-            {
-
-            }
+            bool savingToFile = (bool)SaveToFile.IsChecked;
             if ((bool)PlayerRadio.IsChecked)
-                AddPlayer();
+                AddPlayer(savingToFile);
             if ((bool)EnemyRadio.IsChecked)
-                AddEnemy();
+                AddEnemy(savingToFile);
         }
         private void CancelButton_Click(object sender, System.Windows.RoutedEventArgs e) => CloseWindow();
 
