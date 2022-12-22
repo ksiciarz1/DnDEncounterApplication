@@ -1,7 +1,10 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Numerics;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 
 namespace DnDEncounterApplication
 {
@@ -39,7 +42,7 @@ namespace DnDEncounterApplication
             WeaponsTreeView.Visibility = Visibility.Visible;
         }
 
-        private void AddPlayer(bool saveToFile)
+        private async void AddPlayer(bool saveToFile)
         {
             // TODO: Validation
             PlayerCharacter player = new PlayerCharacter()
@@ -53,26 +56,28 @@ namespace DnDEncounterApplication
                 SpellAttack = Convert.ToInt32(SpellAttackTextBox.Text),
                 SaveDC = Convert.ToInt32(SaveDCTextBox.Text)
             };
+
             AddingFormWindow parentWindow = Window.GetWindow(this) as AddingFormWindow;
             if (parentWindow != null) parentWindow.parentWindow.AddPlayerCharacterToDataGrid(player);
             ClearFields();
             if (saveToFile)
             {
                 string name = GetPath(player.Name);
-                if (FileManager.FileExists(name))
+                if (FileManager.PlayerFileExists(name))
                 {
-                    // TODO: Opens a window to replace file
-                    //FileManager.AddNewPlayerCharacter(player, true);
+                    PopUpWindow popUpWindow = new PopUpWindow();
+                    popUpWindow.ShowDialog();
+                    bool resoult = await popUpWindow.GetResoults();
+                    if (resoult) FileManager.SavePlayerCharacter(player, true);
                 }
                 else
-                {
                     FileManager.SavePlayerCharacter(player);
-                }
+
             }
         }
-        private void AddEnemy(bool saveToFile)
+        private async void AddEnemy(bool saveToFile)
         {
-            //throw new NotImplementedException();
+            // TODO: Validation
             Enemy enemy = new Enemy()
             {
                 Name = NameTextBox.Text,
@@ -84,21 +89,23 @@ namespace DnDEncounterApplication
                 AttackBonus = Convert.ToInt32(AttackBonusTextBox.Text),
                 SaveDC = Convert.ToInt32(SaveDCTextBox.Text)
             };
+
             AddingFormWindow parentWindow = Window.GetWindow(this) as AddingFormWindow;
             if (parentWindow != null) parentWindow.parentWindow.AddEnemyToDataGrid(enemy);
             ClearFields();
             if (saveToFile)
             {
                 string name = GetPath(enemy.Name);
-                if (FileManager.FileExists(name))
+                if (FileManager.EnemyFileExists(name))
                 {
-                    // TODO: Opens a window to replace file
-                    //FileManager.AddNewEnemy(enemy, true);
+                    PopUpWindow popUpWindow = new PopUpWindow();
+                    popUpWindow.ShowDialog();
+                    bool resoult = await popUpWindow.GetResoults();
+                    if (resoult) FileManager.SaveEnemy(enemy, true);
                 }
                 else
-                {
                     FileManager.SaveEnemy(enemy);
-                }
+
             }
         }
         private void ClearFields()
@@ -112,7 +119,7 @@ namespace DnDEncounterApplication
             SaveDCTextBox.Text = "";
             SpellAttackTextBox.Text = "";
         }
-        private string GetPath(string name) => name.Trim().Replace(" ", "_");
+        private string GetPath(string name) => name.Trim().Replace(" ", "_") + ".json";
 
 
         private void ApplyButton_Click(object sender, System.Windows.RoutedEventArgs e)

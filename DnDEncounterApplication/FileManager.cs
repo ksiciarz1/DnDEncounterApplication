@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.MemoryMappedFiles;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -16,7 +17,20 @@ namespace DnDEncounterApplication
         public const string playerDirectory = @"./PlayerCharacters";
         public const string enemyDirectory = @"./Enemies";
 
-        public static bool FileExists(string filePath) => File.Exists(filePath);
+        public static bool PlayerFileExists(string filePath)
+        {
+            filePath = filePath.Trim().Replace(" ", "_ ");
+            filePath = playerDirectory + @"/" + filePath;
+            filePath = Path.GetFullPath(filePath);
+            return File.Exists(filePath);
+        }
+        public static bool EnemyFileExists(string filePath)
+        {
+            filePath = filePath.Trim().Replace(" ", "_ ");
+            filePath = enemyDirectory + @"/" + filePath;
+            filePath = Path.GetFullPath(filePath);
+            return File.Exists(filePath);
+        }
 
         public static PlayerCharacter[] ReadAllPlayerCharacters()
         {
@@ -86,13 +100,15 @@ namespace DnDEncounterApplication
         /// <returns>Return false if file already exists, true otherwise</returns>
         public static bool SavePlayerCharacter(PlayerCharacter character, bool force = false)
         {
-            string filename = character.Name.Trim().Replace(" ", "_");
+            string filename = playerDirectory + @"/" + character.Name.Trim().Replace(" ", "_") + ".json";
             string characterJson = JsonSerializer.Serialize(character, new JsonSerializerOptions() { WriteIndented = true });
+
+            filename = Path.GetFullPath(filename);
 
             if (File.Exists(playerDirectory + filename) && force == false)
                 return false;
 
-            File.WriteAllText(playerDirectory + filename, characterJson);
+            File.WriteAllText(filename, characterJson);
             return true;
         }
 
@@ -103,13 +119,15 @@ namespace DnDEncounterApplication
         /// <returns>Return false if file already exists, true otherwise</returns>
         public static bool SaveEnemy(Enemy enemy, bool force = false)
         {
-            string filename = enemy.Name.Trim().Replace(" ", "_");
+            string filename = enemyDirectory + @"/" + enemy.Name.Trim().Replace(" ", "_") + ".json";
             string characterJson = JsonSerializer.Serialize(enemy, new JsonSerializerOptions() { WriteIndented = true });
+
+            filename = Path.GetFullPath(filename);
 
             if (File.Exists(enemyDirectory + filename) && force == false)
                 return false;
 
-            File.WriteAllText(enemyDirectory + filename, characterJson);
+            File.WriteAllText(filename, characterJson);
             return true;
         }
     }
