@@ -27,8 +27,8 @@ namespace DnDEncounterApplication
     /// </summary>
     public partial class MainWindow : Window
     {
-        private PlayerCharacter[] playerCharacters;
-        private Enemy[] enemies;
+        private List<PlayerCharacter> playerCharacters = new List<PlayerCharacter>();
+        private List<Enemy> enemies = new List<Enemy>();
         private ObservableCollection<CreatureViewContext> CreatureData = new ObservableCollection<CreatureViewContext>();
         private string[] standardParty = new string[] { "Flint_Torunn", "Dorn_GreyCastle", "Vathumal_Sheshen", "Rurik_Rumnaheim", "Ithil", "Snus_Of_The_Watchfull_Eye" };
 
@@ -201,7 +201,7 @@ namespace DnDEncounterApplication
                     {
                         playerCharacters.Add(FileManager.ReadPlayer(playerCharactersFiles[i]));
                         CreatureData.Add(new CreatureViewContext(playerCharacters[i]));
-                        SetImage(playerCharacters);
+                        SetImage(playerCharactersFiles[i]);
                         contained++;
                         break;
                     }
@@ -277,5 +277,14 @@ namespace DnDEncounterApplication
             MyDataGrid.Items.Refresh();
         }
 
+        private void Add_Creature_Click(object sender, RoutedEventArgs e)
+        {
+            if (formWindow == null)
+            {
+                formWindow = new AddingFormWindow(this);
+                formWindow.Closed += (s, e) => { formWindow = null; };
+            }
+            formWindow.ShowDialog();
+        }
     }
 }

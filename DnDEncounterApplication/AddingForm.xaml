@@ -29,35 +29,35 @@
         </Grid>
         <Grid x:Name="Name" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="390">
             <Label Content="Name" Height="32" Width="106" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-            <TextBox Margin="111,0,1,0" TextWrapping="Wrap" Text="" Height="32" VerticalAlignment="Center" FontSize="22"/>
+            <TextBox x:Name="NameTextBox" Margin="111,0,1,0" TextWrapping="Wrap" Text="" Height="32" VerticalAlignment="Center" FontSize="22"/>
         </Grid>
         <Grid x:Name="HP" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="390" Margin="0,37,0,0">
             <Label Content="HP" Width="106" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-            <TextBox TextWrapping="Wrap" Text="" Height="32" VerticalAlignment="Center" FontSize="22" HorizontalAlignment="Left" Width="50" Margin="111,0,0,0"/>
+            <TextBox x:Name="HPTextBox" TextWrapping="Wrap" Text="" Height="32" VerticalAlignment="Center" FontSize="22" HorizontalAlignment="Left" Width="50" Margin="111,0,0,0"/>
         </Grid>
         <Grid x:Name="LVL" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="390" Margin="0,74,0,0">
             <Label Content="LVL" Height="32" Width="106" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-            <TextBox Margin="111,0,229,0" TextWrapping="Wrap" Text="" Height="32" VerticalAlignment="Center" FontSize="22"/>
+            <TextBox x:Name="LVLTextBox" Margin="111,0,229,0" TextWrapping="Wrap" Text="" Height="32" VerticalAlignment="Center" FontSize="22"/>
         </Grid>
         <Grid x:Name="AC" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="390" Margin="0,111,0,0">
             <Label Content="AC" Height="32" Width="106" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-            <TextBox Margin="111,0,229,0" TextWrapping="Wrap" Text="" Height="32" VerticalAlignment="Center" FontSize="22"/>
+            <TextBox x:Name="ACTextBox" Margin="111,0,229,0" TextWrapping="Wrap" Text="" Height="32" VerticalAlignment="Center" FontSize="22"/>
         </Grid>
         <Grid x:Name="ProficencyBonus" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="390" Margin="0,148,0,0">
-            <Label Content="ProficencyBonus" Height="32" Width="106" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-            <TextBox Margin="111,0,229,0" TextWrapping="Wrap" Text="" Height="32" VerticalAlignment="Center" FontSize="22"/>
+            <Label Content="Proficency Bonus" Height="32" Width="106" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="ProficencyBonusTextBox" Margin="111,0,229,0" TextWrapping="Wrap" Text="" Height="32" VerticalAlignment="Center" FontSize="22"/>
         </Grid>
         <Grid x:Name="AttackBonus" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="390" Margin="0,185,0,0">
-            <Label Content="AttackBonus" Height="32" Width="106" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-            <TextBox Margin="111,0,229,0" TextWrapping="Wrap" Text="" Height="32" VerticalAlignment="Center" FontSize="22"/>
+            <Label Content="Attack Bonus" Height="32" Width="106" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="AttackBonusTextBox" Margin="111,0,229,0" TextWrapping="Wrap" Text="" Height="32" VerticalAlignment="Center" FontSize="22"/>
         </Grid>
         <Grid x:Name="SaveDC" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="390" Margin="0,222,0,0">
             <Label Content="SaveDC" Height="32" Width="106" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-            <TextBox Margin="111,0,229,0" TextWrapping="Wrap" Text="" Height="32" VerticalAlignment="Center" FontSize="22"/>
+            <TextBox x:Name="SaveDCTextBox" Margin="111,0,229,0" TextWrapping="Wrap" Text="" Height="32" VerticalAlignment="Center" FontSize="22"/>
         </Grid>
         <Grid x:Name="SpellAttack" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="390" Margin="0,259,0,0">
             <Label Content="SpellAttack" Height="32" Width="106" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-            <TextBox Margin="111,0,229,0" TextWrapping="Wrap" Text="" Height="32" VerticalAlignment="Center" FontSize="22"/>
+            <TextBox x:Name="SpellAttackTextBox" Margin="111,0,229,0" TextWrapping="Wrap" Text="" Height="32" VerticalAlignment="Center" FontSize="22"/>
         </Grid>
         <Grid x:Name="Footer" HorizontalAlignment="Left" Height="20" Margin="10,10,0,10" Grid.Row="2" VerticalAlignment="Center" Width="780" Grid.ColumnSpan="2">
             <Button x:Name="ApplyButton" Content="Apply" HorizontalAlignment="Left" VerticalAlignment="Center" Width="50" Click="ApplyButton_Click"/>

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Windows;
 
 namespace DnDEncounterApplication
 {
@@ -7,14 +8,12 @@ namespace DnDEncounterApplication
     /// </summary>
     public partial class AddingFormWindow : Window
     {
-        public AddingFormWindow()
+        public MainWindow parentWindow;
+        public AddingFormWindow(MainWindow mainWindow)
         {
             InitializeComponent();
-        }
 
-        public void CloseWindow()
-        {
-            Close();
+            parentWindow = mainWindow;
         }
     }
 }
