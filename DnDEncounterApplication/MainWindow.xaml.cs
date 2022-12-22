@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Packaging;
@@ -99,6 +101,32 @@ namespace DnDEncounterApplication
             MyTabControl.Items.Add(weaponsTabItem);
         }
 
+        public void AddEnemyToDataGrid(Enemy enemy)
+        {
+            enemies.Add(enemy);
+            CreatureData.Add(new CreatureViewContext(enemy));
+        }
+        public void AddPlayerCharacterToDataGrid(PlayerCharacter player)
+        {
+            playerCharacters.Add(player);
+            CreatureData.Add(new CreatureViewContext(player));
+        }
+
+        public void SetImage(string file)
+        {
+            file = "Images/" + file;
+            ImageSource? imageSource = FileManager.GetImageSource(file);
+            if (imageSource != null)
+            {
+                SelectedImage.Source = imageSource;
+                SelectedImage.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                SelectedImage.Visibility = Visibility.Hidden;
+            }
+        }
+
         // Events
         private void DataGrid_SelectedCellsChanged(object sender, EventArgs e)
         {
@@ -139,10 +167,25 @@ namespace DnDEncounterApplication
             }
             catch { }
         }
-        private void Add_Standart_Party_Click(object sender, RoutedEventArgs e)
+        private void Dnd_Encounter_Builder_Click(object sender, RoutedEventArgs e)
         {
-            string[] playerCharactersFiles = Directory.GetFiles(@"PlayerCharacters");
-            playerCharacters = new PlayerCharacter[playerCharactersFiles.Length];
+            // Opens a website in default browser
+            try
+            {
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                {
+                    FileName = "https://www.aidedd.org/dnd-encounter/index.php?l=1",
+                    UseShellExecute = true
+                });
+            }
+            catch { }
+        }
+        /// <summary>
+        /// Adds all player characters from standard party array
+        /// </summary>
+        private void Add_Standard_Party_Click(object sender, RoutedEventArgs e)
+        {
+            string[] playerCharactersFiles = FileManager.GetAllPlayerCharacterPaths();
 
             int contained = 0;
             for (int i = 0; i < playerCharactersFiles.Length; i++)
@@ -156,7 +199,9 @@ namespace DnDEncounterApplication
                 {
                     if (playerCharactersFiles[i].Contains(standardPlayer))
                     {
-                        contains = true;
+                        playerCharacters.Add(FileManager.ReadPlayer(playerCharactersFiles[i]));
+                        CreatureData.Add(new CreatureViewContext(playerCharacters[i]));
+                        SetImage(playerCharacters);
                         contained++;
                         break;
                     }
@@ -172,21 +217,65 @@ namespace DnDEncounterApplication
         private void Remove_Creature_Click(object sender, RoutedEventArgs e)
         {
             if (MyDataGrid.SelectedItem != null)
-                CreatureData.Remove((CreatureViewContext)MyDataGrid.SelectedItem);
-        }
-        private void Create_New_Creature_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Add_Creature_Click(object sender, RoutedEventArgs e)
-        {
-            if (formWindow == null)
             {
-                formWindow = new AddingFormWindow();
-                formWindow.Closed += (s, e) => { formWindow = null; };
+                Enemy enemy = MyDataGrid.SelectedItem as Enemy;
+                if (enemy != null)
+                    enemies.Remove(enemy);
+
+                PlayerCharacter playerCharacter = MyDataGrid.SelectedItem as PlayerCharacter;
+                if (playerCharacter != null)
+                    playerCharacters.Remove(playerCharacter);
+
+                CreatureData.Remove((CreatureViewContext)MyDataGrid.SelectedItem);
             }
-            formWindow.ShowDialog();
         }
+        /// <summary>
+        /// Moves items in datagrid up and down based on sender
+        /// </summary>
+        private void Direction_Button_Click(object sender, RoutedEventArgs e)
+        {
+            int selectedIndex = MyDataGrid.SelectedIndex;
+            // Clears Sort in data grid
+            ICollectionView view = CollectionViewSource.GetDefaultView(CreatureData);
+            if (view.SortDescriptions.Any(description =>
+            {
+                return description != null;
+            }))
+            {
+                view.SortDescriptions.Clear();
+
+                // Moves creature in Creature Data collection in its place in Data grid
+                for (int i = 0; i < MyDataGrid.Items.Count; i++)
+                    for (int j = 0; j < CreatureData.Count; j++)
+                    {
+                        if (CreatureData[j] == MyDataGrid.Items[i])
+                        {
+                            CreatureData.Move(j, i);
+                            break;
+                        }
+                    }
+
+                // Clears sorting arrow in columns headers
+                foreach (var column in MyDataGrid.Columns)
+                    column.SortDirection = null;
+
+                MyDataGrid.SelectedIndex = selectedIndex;
+            }
+
+            if (sender == UpButton)
+            {
+                if (MyDataGrid.SelectedIndex != 0)
+                    CreatureData.Move(MyDataGrid.SelectedIndex, MyDataGrid.SelectedIndex - 1);
+
+            }
+            else if (sender == DownButton)
+            {
+                if (MyDataGrid.SelectedIndex != MyDataGrid.Items.Count - 1)
+                    CreatureData.Move(MyDataGrid.SelectedIndex, MyDataGrid.SelectedIndex + 1);
+
+            }
+            MyDataGrid.Items.Refresh();
+        }
+
     }
 }
