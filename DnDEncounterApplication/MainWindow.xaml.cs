@@ -127,7 +127,27 @@ namespace DnDEncounterApplication
             }
         }
 
-        // Events
+
+        #region Events
+
+        private void Dnd_Encounter_Calculator_Click(object sender, RoutedEventArgs e) => OpenWebsite("https://kastark.co.uk/rpgs/encounter-calculator-5th/");
+        private void Dnd_Random_Encounter_Click(object sender, RoutedEventArgs e) => OpenWebsite("http://tools.goblinist.com/5enc");
+        private void Dnd_Encounter_Builder_Click(object sender, RoutedEventArgs e) => OpenWebsite("https://www.aidedd.org/dnd-encounter/index.php?l=1");
+
+        // Opens a website in default browser
+        private void OpenWebsite(string url)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                {
+                    FileName = url,
+                    UseShellExecute = true
+                });
+            }
+            catch { }
+        }
+
         private void DataGrid_SelectedCellsChanged(object sender, EventArgs e)
         {
             MyTabControl.Items.Clear();
@@ -140,45 +160,6 @@ namespace DnDEncounterApplication
                 else
                     SetUpTabForEnemy(view.Enemy);
             }
-        }
-        private void Dnd_Encounter_Calculator_Click(object sender, RoutedEventArgs e)
-        {
-            // Opens a website in default browser
-            try
-            {
-                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
-                {
-                    FileName = "https://kastark.co.uk/rpgs/encounter-calculator-5th/",
-                    UseShellExecute = true
-                });
-            }
-            catch { }
-        }
-        private void Dnd_Random_Encounter_Click(object sender, RoutedEventArgs e)
-        {
-            // Opens a website in default browser
-            try
-            {
-                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
-                {
-                    FileName = "http://tools.goblinist.com/5enc",
-                    UseShellExecute = true
-                });
-            }
-            catch { }
-        }
-        private void Dnd_Encounter_Builder_Click(object sender, RoutedEventArgs e)
-        {
-            // Opens a website in default browser
-            try
-            {
-                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
-                {
-                    FileName = "https://www.aidedd.org/dnd-encounter/index.php?l=1",
-                    UseShellExecute = true
-                });
-            }
-            catch { }
         }
         /// <summary>
         /// Adds all player characters from standard party array
@@ -276,7 +257,6 @@ namespace DnDEncounterApplication
             }
             MyDataGrid.Items.Refresh();
         }
-
         private void Add_Creature_Click(object sender, RoutedEventArgs e)
         {
             if (formWindow == null)
@@ -286,5 +266,7 @@ namespace DnDEncounterApplication
             }
             formWindow.ShowDialog();
         }
+
+        #endregion
     }
 }

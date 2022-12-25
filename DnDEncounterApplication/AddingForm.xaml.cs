@@ -83,6 +83,14 @@ namespace DnDEncounterApplication
             WeaponsTreeView.Visibility = Visibility.Visible;
         }
 
+        private void ApplyButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            bool savingToFile = (bool)SaveToFile.IsChecked;
+            if ((bool)PlayerRadio.IsChecked)
+                AddPlayer(savingToFile);
+            if ((bool)EnemyRadio.IsChecked)
+                AddEnemy(savingToFile);
+        }
         private async void AddPlayer(bool saveToFile)
         {
             // TODO: Make adding weapons better
@@ -122,6 +130,14 @@ namespace DnDEncounterApplication
                 else
                     FileManager.SavePlayerCharacter(player);
 
+            }
+            private void ApplyButton_Click(object sender, System.Windows.RoutedEventArgs e)
+            {
+                bool savingToFile = (bool)SaveToFile.IsChecked;
+                if ((bool)PlayerRadio.IsChecked)
+                    AddPlayer(savingToFile);
+                if ((bool)EnemyRadio.IsChecked)
+                    AddEnemy(savingToFile);
             }
         }
         private async void AddEnemy(bool saveToFile)
@@ -174,19 +190,6 @@ namespace DnDEncounterApplication
         }
         private string GetPath(string name) => name.Trim().Replace(" ", "_") + ".json";
 
-
-        private void ApplyButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            bool savingToFile = (bool)SaveToFile.IsChecked;
-            if ((bool)PlayerRadio.IsChecked)
-                AddPlayer(savingToFile);
-            if ((bool)EnemyRadio.IsChecked)
-                AddEnemy(savingToFile);
-        }
-        private void CancelButton_Click(object sender, System.Windows.RoutedEventArgs e) => CloseWindow();
-
-        private void CloseWindow() => Window.GetWindow(this).Close();
-
         private void AddSpecialButton_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
@@ -198,7 +201,6 @@ namespace DnDEncounterApplication
             else if (button == AddWeaponButton)
                 new Special(Special.Type.Weapon, this);
         }
-
         internal void AddSpecial(Special.Type type, string name, string description)
         {
             // TODO: Make adding weapons better
@@ -215,5 +217,10 @@ namespace DnDEncounterApplication
                     break;
             }
         }
+
+        // Closing window from form
+        private void CancelButton_Click(object sender, System.Windows.RoutedEventArgs e) => CloseWindow();
+        private void CloseWindow() => Window.GetWindow(this).Close();
+
     }
 }

@@ -38,12 +38,6 @@ namespace DnDEncounterApplication
             }
         }
 
-        public enum Type
-        {
-            Attack,
-            Spell,
-            Weapon
-        }
         private void ConfirmButton_Click(object sender, RoutedEventArgs e)
         {
             if (NameTextBox.Text != "")
@@ -52,10 +46,16 @@ namespace DnDEncounterApplication
                 Close();
             }
         }
-
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        public enum Type
+        {
+            Attack,
+            Spell,
+            Weapon
         }
 
     }
