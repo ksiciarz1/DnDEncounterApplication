@@ -23,9 +23,9 @@
             <TextBlock HorizontalAlignment="Left" Height="35" TextWrapping="Wrap" VerticalAlignment="Top" Width="373" FontSize="25"><Run Text="Add a "/><Run Language="pl-pl" Text="creature"/></TextBlock>
             <RadioButton GroupName="CreatureSelect" Name="EnemyRadio" Content="Enemy" HorizontalAlignment="Left" Margin="0,45,0,0" VerticalAlignment="Top" Checked="EnemyRadio_Checked"/>
             <RadioButton GroupName="CreatureSelect" Name="PlayerRadio" Content="Player" HorizontalAlignment="Left" Margin="102,45,0,0" VerticalAlignment="Top" Checked="PlayerRadio_Checked"/>
-            <Button x:Name="AddAttackButton" Content="Add attack" HorizontalAlignment="Left" Margin="390,40,0,0" VerticalAlignment="Top" Width="80"/>
-            <Button x:Name="AddSpellButton" Content="Add spell" HorizontalAlignment="Left" Margin="475,40,0,0" VerticalAlignment="Top" Width="80"/>
-            <Button x:Name="AddWeaponButton" Content="Add weapon" HorizontalAlignment="Left" Margin="560,40,0,0" VerticalAlignment="Top" Width="80"/>
+            <Button x:Name="AddAttackButton" Content="Add attack" HorizontalAlignment="Left" Margin="390,40,0,0" VerticalAlignment="Top" Width="80" Click="AddSpecialButton_Click"/>
+            <Button x:Name="AddSpellButton" Content="Add spell" HorizontalAlignment="Left" Margin="475,40,0,0" VerticalAlignment="Top" Width="80" Click="AddSpecialButton_Click"/>
+            <Button x:Name="AddWeaponButton" Content="Add weapon" HorizontalAlignment="Left" Margin="560,40,0,0" VerticalAlignment="Top" Width="80" Click="AddSpecialButton_Click"/>
         </Grid>
         <StackPanel HorizontalAlignment="Left" Orientation="Vertical" Grid.Row="1" VerticalAlignment="Top" Height="313">
             <Grid x:Name="Name" Width="390" Margin="0,5,0,0">
